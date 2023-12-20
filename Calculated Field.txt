@@ -1,0 +1,33 @@
+YTD Total Sales =SUM(IF 
+YEAR([Date]) = {MAX(YEAR([Date]))}
+THEN
+[Price ($)]
+END
+)
+
+YTD Car Sold=COUNT(IF 
+YEAR([Date]) = {MAX(YEAR([Date]))}
+THEN
+[Car id]
+END
+)
+
+YTD AVG Price=[YTD Total Sales] / [YTD Car Sold]
+
+YoY Sales Growth=([YTD Total Sales]-[PYTD Total Sales ])/[PYTD Total Sales ]
+YoY Car Sold Growth=([YTD Car Sold] - [PYTD Car Sold ]) / [PYTD Car Sold ]
+YoY Avg Growth=([YTD AVG Price] - [PYTD AVG Price]) / [PYTD AVG Price]
+PYTD Total Sales =SUM(IF 
+YEAR([Date]) = {MAX(YEAR([Date]))}-1
+THEN
+[Price ($)]
+END
+)
+PYTD Car Sold =COUNT(IF 
+YEAR([Date]) = {MAX(YEAR([Date]))}-1
+THEN
+[Car id]
+END
+)
+
+PYTD AVG Price=[PYTD Total Sales ] / [PYTD Car Sold ]
